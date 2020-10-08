@@ -2,14 +2,9 @@
   "name": "Waiting Room Bot for Zoom Meetings",
   "version": "0.1.0",
   "description": "Waiting Room Bot for Zoom Meetings",
-  "permissions": [
-    "activeTab",
-    "declarativeContent"
-  ],
+  "permissions": ["activeTab", "declarativeContent", "storage"],
   "background": {
-    "scripts": [
-      "background.js"
-    ],
+    "scripts": ["background.js"],
     "persistent": false
   },
   "page_action": {
@@ -20,6 +15,6 @@
     "rxjs.umd.js",
     "waitingroombot.js"
   ],
-  "icons": { },
+  "icons": {},
   "manifest_version": 2
 }

@@ -1,4 +1,5 @@
-// from breakout rooms bot:
+// from breakout rooms bot
+
 const getStoreObservable = (store) => {
   return new rxjs.Observable((observer) => {
     const unsubscribe = store.subscribe(function () {
@@ -51,6 +52,19 @@ const chatboxSend = (msg) => {
   chatboxElement.dispatchEvent(oEvent);
 };
 
+// helper functions
+
+let names = [];
+const parseNameList = (nameList) => {
+  names = nameList.split("\n").map((line) => line.split("\t", 2)[1]);
+};
+
+const inNameList = (displayName) => {
+  // change this function
+  const res = fuzzysort.go(displayName, names);
+  return res.length > 0 && res[0].score >= -5;
+};
+
 const admit = (admitId) => {
   console.log(`Admitting ${admitId}`);
   window.commandSocket.send(
@@ -61,6 +75,8 @@ const admit = (admitId) => {
     })
   );
 };
+
+// rxjs
 
 const store$ = getStoreObservable(
   document.getElementById("root")._reactRootContainer._internalRoot.current
@@ -99,6 +115,8 @@ const admitSubscription = admitTimeSliceQueue$.subscribe((userId) => {
   } catch {}
 });
 
+// init
+
 const chatPaneButton = document.querySelector(
   '[aria-label^="open the chat pane"]'
 );
@@ -107,5 +125,6 @@ if (chatPaneButton) {
 }
 
 setTimeout(() => {
+  parseNameList(nameList);
   chatboxSend("active!");
 }, 100);

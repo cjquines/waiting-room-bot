@@ -4,6 +4,7 @@
 
 "use strict";
 
+let namelist = document.getElementById("namelist");
 let launcher = document.getElementById("launcher");
 
 launcher.onclick = function (element) {
@@ -22,6 +23,16 @@ launcher.onclick = function (element) {
         'var rxjs = document.createElement("script");' +
         `rxjs.setAttribute("src","${fuzzySortUrl}");` +
         "document.head.appendChild(rxjs);",
+    });
+
+    // this is incredibly sketchy:
+    chrome.tabs.executeScript(tabs[0].id, {
+      code:
+        'var namevar = document.createElement("script");' +
+        'namevar.textContent = "window.nameList = `" +' +
+        JSON.stringify(namelist.value) +
+        ' + "`";' +
+        "document.head.appendChild(namevar);",
     });
 
     var url = chrome.runtime.getURL("waitingroombot.js");
