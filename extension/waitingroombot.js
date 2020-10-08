@@ -87,7 +87,7 @@ const waitingRoom$ = store$.pipe(
   rxjs.operators.map((s) => s.attendeesList.attendeesList),
   rxjs.operators.map((list) =>
     list.reduce((res, user) => {
-      if (user.bHold) res.push(user.userId);
+      if (user.bHold && inNameList(user.displayName)) res.push(user.userId);
       return res;
     }, [])
   ),
