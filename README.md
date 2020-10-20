@@ -6,7 +6,10 @@ much code taken from [breakout room bot](https://github.com/HackyExtensionsForZo
 
 1. [download the zip](https://github.com/cjquines/waiting-room-bot/archive/master.zip). unzip it somewhere.
 2. open a new tab, type `chrome://extensions/` in the url.
-3. turn developer mode on. click load unpacked. select the "extension" folder that you unzipped.
+3. turn developer mode on. (it's the switch in the upper-left.)
+4. click load unpacked. select the "extension" folder that you unzipped.
+
+if it worked, you should see "Waiting Room Bot for Zoom Meetings" be installed as a new extension.
 
 ## usage
 
