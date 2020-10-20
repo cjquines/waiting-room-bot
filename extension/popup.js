@@ -17,12 +17,12 @@ launcher.onclick = function (element) {
         "document.head.appendChild(rxjs);",
     });
 
-    var fuzzySortUrl = chrome.runtime.getURL("fuzzysort.js");
+    var stringSimilarityUrl = chrome.runtime.getURL("string-similarity.min.js");
     chrome.tabs.executeScript(tabs[0].id, {
       code:
-        'var rxjs = document.createElement("script");' +
-        `rxjs.setAttribute("src","${fuzzySortUrl}");` +
-        "document.head.appendChild(rxjs);",
+        'var stringSimilarity = document.createElement("script");' +
+        `stringSimilarity.setAttribute("src","${stringSimilarityUrl}");` +
+        "document.head.appendChild(stringSimilarity);",
     });
 
     // this is incredibly sketchy:

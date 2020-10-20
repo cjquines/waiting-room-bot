@@ -11,7 +11,7 @@
     "default_popup": "popup.html"
   },
   "web_accessible_resources": [
-    "fuzzysort.js",
+    "string-similarity.min.js",
     "rxjs.umd.js",
     "waitingroombot.js"
   ],
