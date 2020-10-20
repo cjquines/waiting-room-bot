@@ -1,6 +1,6 @@
 // from breakout rooms bot
 
-const getStoreObservable = (store) => {
+function getStoreObservable(store) {
   return new rxjs.Observable((observer) => {
     const unsubscribe = store.subscribe(function () {
       observer.next(store.getState());
@@ -8,7 +8,7 @@ const getStoreObservable = (store) => {
   });
 };
 
-const chatboxSend = (msg) => {
+function chatboxSend(msg) {
   const chatboxElement = document.getElementsByClassName(
     "chat-box__chat-textarea"
   )[0];
@@ -54,18 +54,18 @@ const chatboxSend = (msg) => {
 
 // helper functions
 
-let names = [];
-const parseNameList = (nameList) => {
+var names = [];
+function parseNameList(nameList) {
   names = nameList.split("\n").map((line) => line.split("\t", 2)[1]);
 };
 
-const inNameList = (displayName) => {
+function inNameList(displayName) {
   // change this function
   const res = fuzzysort.go(displayName, names);
   return res.length > 0 && res[0].score >= -5;
 };
 
-const admit = (admitId) => {
+function admit(admitId) {
   console.log(`Admitting ${admitId}`);
   window.commandSocket.send(
     JSON.stringify({
@@ -78,12 +78,12 @@ const admit = (admitId) => {
 
 // rxjs
 
-const store$ = getStoreObservable(
+var store$ = getStoreObservable(
   document.getElementById("root")._reactRootContainer._internalRoot.current
     .child.pendingProps.store
 );
 
-const waitingRoom$ = store$.pipe(
+var waitingRoom$ = store$.pipe(
   rxjs.operators.map((s) => s.attendeesList.attendeesList),
   rxjs.operators.map((list) =>
     list.reduce((res, user) => {
@@ -103,12 +103,12 @@ const waitingRoom$ = store$.pipe(
   rxjs.operators.flatMap((res) => rxjs.from(res))
 );
 
-const admitTimeSlice$ = rxjs.interval(10);
-const admitTimeSliceQueue$ = rxjs
+var admitTimeSlice$ = rxjs.interval(10);
+var admitTimeSliceQueue$ = rxjs
   .zip(waitingRoom$, admitTimeSlice$)
   .pipe(rxjs.operators.map(([s, _d]) => s));
 
-const admitSubscription = admitTimeSliceQueue$.subscribe((userId) => {
+var admitSubscription = admitTimeSliceQueue$.subscribe((userId) => {
   try {
     admit(userId);
     chatboxSend(`admitted ${userId}`);
@@ -117,7 +117,7 @@ const admitSubscription = admitTimeSliceQueue$.subscribe((userId) => {
 
 // init
 
-const chatPaneButton = document.querySelector(
+var chatPaneButton = document.querySelector(
   '[aria-label^="open the chat pane"]'
 );
 if (chatPaneButton) {
