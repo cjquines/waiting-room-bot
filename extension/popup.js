@@ -5,7 +5,25 @@
 "use strict";
 
 let namelist = document.getElementById("namelist");
+let namepreview = document.getElementById("namepreview");
+let testinput = document.getElementById("testinput");
+let testpreview = document.getElementById("testpreview");
 let launcher = document.getElementById("launcher");
+
+namelist.oninput = function (e) {
+  namepreview.innerText = JSON.stringify(
+    namelist.value.split("\n").map((line) => line.split("\t", 2)[1])
+  );
+};
+
+testinput.oninput = function (e) {
+  testpreview.innerText = JSON.stringify(
+    stringSimilarity.findBestMatch(
+      testinput.value,
+      namelist.value.split("\n").map((line) => line.split("\t", 2)[1])
+    ).bestMatch
+  );
+};
 
 launcher.onclick = function (element) {
   chrome.tabs.query({ active: true, currentWindow: true }, function (tabs) {

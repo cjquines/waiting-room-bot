@@ -2,9 +2,21 @@
 <html>
   <head>
     <style>
+      .flex {
+        display: flex;
+        margin-bottom: 1em;
+      }
+
+      .flex * {
+        width: 50%;
+      }
+
+      #namepreview, #testpreview {
+        padding: 0 1em;
+      }
+
       #namelist {
-        height: 90%;
-        width: 100%;
+        height: 300px;
       }
 
       #launcher {
@@ -15,8 +27,18 @@
     <meta charset="UTF-8" />
   </head>
   <body style="width: 600px; height: 450px">
-    <textarea id="namelist"></textarea>
-    <button id="launcher">attach and launch</button>
+    <b>Paste name list:</b>
+    <div class="flex">
+      <textarea id="namelist"></textarea>
+      <p id="namepreview"></p>
+    </div>
+    <b>Test a name:</b>
+    <div class="flex">
+      <input id="testinput" type="text"></input>
+      <p id="testpreview"></p>
+    </div>
+    <button id="launcher">Attach and launch</button>
+    <script src="string-similarity.min.js"></script>
     <script src="popup.js"></script>
   </body>
 </html>
