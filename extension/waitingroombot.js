@@ -61,8 +61,8 @@ function parseNameList(nameList) {
 
 function inNameList(displayName) {
   // change this function
-  const res = fuzzysort.go(displayName, names);
-  return res.length > 0 && res[0].score >= -5;
+  const res = stringSimilarity.findBestMatch(displayName, names);
+  return res.bestMatch.rating >= 0.5;
 };
 
 function admit(admitId) {

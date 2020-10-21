@@ -6,7 +6,7 @@ much code taken from [breakout room bot](https://github.com/HackyExtensionsForZo
 
 1. [download the zip](https://github.com/cjquines/waiting-room-bot/archive/master.zip). unzip it somewhere.
 2. open a new tab, type `chrome://extensions/` in the url.
-3. turn developer mode on. (it's the switch in the upper-left.)
+3. turn developer mode on. (it's the switch in the upper-right.)
 4. click load unpacked. select the "extension" folder that you unzipped.
 
 if it worked, you should see "Waiting Room Bot for Zoom Meetings" be installed as a new extension.
@@ -17,7 +17,7 @@ if it worked, you should see "Waiting Room Bot for Zoom Meetings" be installed a
 2. click the extension in your menu bar to open the popup.
     * if it's not there, you might have to click the puzzle piece, and *then* click the extension.
 3. paste the list of names into the big textbox.
-    * the list of names should be one entry per line. each line should be a number, then tab, then the name, then tab, then any other text. for example:
+    * the list of names should be one entry per line. each line should be some text, then tab, then the name, then tab, then any other text. for example:
 ```
 1	Edward Stanley Pembroke	12	School, MA
 2	Carl Joshua Quines	11	School, MA
