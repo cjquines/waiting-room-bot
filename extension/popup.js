@@ -11,7 +11,7 @@ let testpreview = document.getElementById("testpreview");
 let launcher = document.getElementById("launcher");
 
 function jiggleName(name) {
-  const names = name.toLowerCase().split(" ");
+  const names = name.split(" ");
   const lastName = names.pop();
   const [firstName, ...middleNames] = names;
   let res = [
@@ -35,22 +35,23 @@ function jiggleName(name) {
   return res;
 }
 
+var names = [];
 namelist.oninput = function (e) {
-  namepreview.innerText = JSON.stringify(
-    namelist.value.split("\n").map((line) => line.split("\t", 2)[1])
-  );
+  names = namelist.value
+    .split("\n")
+    .map((line) => line.split("\t", 2)[1])
+    .map((name) => name.toLowerCase());
+  namepreview.innerText = JSON.stringify(names);
 };
 
 testinput.oninput = function (e) {
-  testpreview.innerText = JSON.stringify(
-    stringSimilarity.findBestMatch(
-      testinput.value,
-      namelist.value
-        .split("\n")
-        .map((line) => line.split("\t", 2)[1])
-        .flatmap(jiggleName)
-    ).bestMatch
-  );
+  var input = testinput.value.toLowerCase();
+  testpreview.innerText = `${JSON.stringify(
+    stringSimilarity.findBestMatch(input, names).bestMatch
+  )}
+  ${JSON.stringify(
+    stringSimilarity.findBestMatch(input, names.flatMap(jiggleName)).bestMatch
+  )}`;
 };
 
 launcher.onclick = function (element) {

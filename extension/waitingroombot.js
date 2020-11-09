@@ -54,9 +54,8 @@ function chatboxSend(msg) {
 
 // helper functions
 
-var names = [];
 function jiggleName(name) {
-  const names = name.toLowerCase().split(" ");
+  const names = name.split(" ");
   const lastName = names.pop();
   const [firstName, ...middleNames] = names;
   let res = [
@@ -80,17 +79,22 @@ function jiggleName(name) {
   return res;
 }
 
+var names = [];
+var jiggledNames = [];
 function parseNameList(nameList) {
   names = nameList
     .split("\n")
     .map((line) => line.split("\t", 2)[1])
-    .flatMap(jiggleName);
+    .map((name) => name.toLowerCase());
+  jiggledNames = names.flatMap(jiggleName);
 }
 
 function inNameList(displayName) {
-  const res = stringSimilarity.findBestMatch(displayName.toLowerCase(), names);
+  const display = displayName.toLowerCase();
+  const res = stringSimilarity.findBestMatch(display, names);
+  const jiggledRes = stringSimilarity.findBestMatch(display, jiggledNames);
   // change this threshold?
-  return res.bestMatch.rating >= 0.5;
+  return res.bestMatch.rating >= 0.5 || jiggledRes.bestMatch.rating >= 0.95;
 }
 
 function admit(admitId) {
