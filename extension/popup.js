@@ -28,8 +28,14 @@ function jiggleName(name) {
       [firstName, ...middleNames, lastName].join(" "),
       // Edward Stanley P
       [firstName, ...middleNames, lastName[0]].join(" "),
+      // Edward S Pembroke
+      [firstName, middleNames[0][0], lastName].join(" "),
+      // Edward S P
+      [firstName, middleNames[0][0], lastName].join(" "),
       // Pembroke Edward Stanley
       [lastName, firstName, ...middleNames].join(" "),
+      // Pembroke Edward S
+      [lastName, firstName, middleNames[0][0]].join(" "),
     ]);
   }
   return res;
