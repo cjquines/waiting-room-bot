@@ -6,7 +6,7 @@ function getStoreObservable(store) {
       observer.next(store.getState());
     });
   });
-};
+}
 
 function chatboxSend(msg) {
   const chatboxElement = document.getElementsByClassName(
@@ -50,20 +50,48 @@ function chatboxSend(msg) {
   oEvent.keyCodeVal = k;
 
   chatboxElement.dispatchEvent(oEvent);
-};
+}
 
 // helper functions
 
 var names = [];
+function jiggleName(name) {
+  const names = name.toLowerCase().split(" ");
+  const lastName = names.pop();
+  const [firstName, ...middleNames] = names;
+  let res = [
+    // Edward Pembroke
+    [firstName, lastName].join(" "),
+    // Edward P
+    [firstName, lastName[0]].join(" "),
+    // Pembroke Edward
+    [lastName, firstName].join(" "),
+  ];
+  if (middleNames.length > 0) {
+    res = res.concat([
+      // Edward Stanley Pembroke
+      [firstName, ...middleNames, lastName].join(" "),
+      // Edward Stanley P
+      [firstName, ...middleNames, lastName[0]].join(" "),
+      // Pembroke Edward Stanley
+      [lastName, firstName, ...middleNames].join(" "),
+    ]);
+  }
+  return res;
+}
+
 function parseNameList(nameList) {
-  names = nameList.split("\n").map((line) => line.split("\t", 2)[1]);
-};
+  names = nameList
+    .split("\n")
+    .map((line) => line.split("\t", 2)[1])
+    .flatMap(jiggleName);
+}
 
 function inNameList(displayName) {
-  // change this function
-  const res = stringSimilarity.findBestMatch(displayName, names);
+  const res = stringSimilarity.findBestMatch(displayName.toLowerCase(), names);
+  // change this threshold?
   return res.bestMatch.rating >= 0.5;
-};
+}
 
 function admit(admitId) {
   console.log(`Admitting ${admitId}`);
@@ -74,7 +102,7 @@ function admit(admitId) {
       seq: 0,
     })
   );
-};
+}
 
 // rxjs
 

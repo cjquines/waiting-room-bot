@@ -10,6 +10,31 @@ let testinput = document.getElementById("testinput");
 let testpreview = document.getElementById("testpreview");
 let launcher = document.getElementById("launcher");
 
+function jiggleName(name) {
+  const names = name.toLowerCase().split(" ");
+  const lastName = names.pop();
+  const [firstName, ...middleNames] = names;
+  let res = [
+    // Edward Pembroke
+    [firstName, lastName].join(" "),
+    // Edward P
+    [firstName, lastName[0]].join(" "),
+    // Pembroke Edward
+    [lastName, firstName].join(" "),
+  ];
+  if (middleNames.length > 0) {
+    res = res.concat([
+      // Edward Stanley Pembroke
+      [firstName, ...middleNames, lastName].join(" "),
+      // Edward Stanley P
+      [firstName, ...middleNames, lastName[0]].join(" "),
+      // Pembroke Edward Stanley
+      [lastName, firstName, ...middleNames].join(" "),
+    ]);
+  }
+  return res;
+}
+
 namelist.oninput = function (e) {
   namepreview.innerText = JSON.stringify(
     namelist.value.split("\n").map((line) => line.split("\t", 2)[1])
@@ -20,7 +45,10 @@ testinput.oninput = function (e) {
   testpreview.innerText = JSON.stringify(
     stringSimilarity.findBestMatch(
       testinput.value,
-      namelist.value.split("\n").map((line) => line.split("\t", 2)[1])
+      namelist.value
+        .split("\n")
+        .map((line) => line.split("\t", 2)[1])
+        .flatmap(jiggleName)
     ).bestMatch
   );
 };
