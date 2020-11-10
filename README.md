@@ -13,7 +13,7 @@ if it worked, you should see "Waiting Room Bot for Zoom Meetings" be installed a
 
 ## usage
 
-1. join a zoom meeting using your browser. make sure you become cohost.
+1. join a zoom meeting using your browser. do not join with audio. make sure you become cohost.
 2. click the extension in your menu bar to open the popup.
     * if it's not there, you might have to click the puzzle piece, and *then* click the extension.
 3. paste the list of names into the big textbox.
@@ -26,4 +26,4 @@ if it worked, you should see "Waiting Room Bot for Zoom Meetings" be installed a
 
 4. click "attach and launch"
 
-if it worked, it should send an "active!" message to the chat. do not close the chat window. do not join audio. use another zoom client to actually participate in the meeting.
+if it worked, it should send an "active!" message to the chat. do not close the chat window. use another zoom client to actually participate in the meeting.
