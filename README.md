@@ -17,12 +17,12 @@ if it worked, you should see "Waiting Room Bot for Zoom Meetings" be installed a
 2. click the extension in your menu bar to open the popup.
     * if it's not there, you might have to click the puzzle piece, and *then* click the extension.
 3. paste the list of names into the big textbox.
+    * day-of, you'll be getting the names from [the class roster link](https://esp.mit.edu/teach/Splash/2020/section_students/20225). just select the entire table, from before the "1" on the first row to the last row.
     * the list of names should be one entry per line. each line should be some text, then tab, then the name, then tab, then any other text. for example:
 ```
 1	Edward Stanley Pembroke	12	School, MA
 2	Carl Joshua Quines	11	School, MA
 ```
-    * day-of, you'll be getting the names from [the class roster link](https://esp.mit.edu/teach/Splash/2020/section_students/20225). just select the entire table, from before the "1" on the first row to the last row.
 
 4. click "attach and launch"
 
