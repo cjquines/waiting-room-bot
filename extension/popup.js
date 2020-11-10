@@ -14,29 +14,32 @@ function jiggleName(name) {
   const names = name.split(" ");
   const lastName = names.pop();
   const [firstName, ...middleNames] = names;
-  let res = [
+  const firstNames = nicknames[firstName] || [firstName];
+  let res = firstNames.flatMap((firstName) => [
     // Edward Pembroke
     [firstName, lastName].join(" "),
     // Edward P
     [firstName, lastName[0]].join(" "),
     // Pembroke Edward
     [lastName, firstName].join(" "),
-  ];
+  ]);
   if (middleNames.length > 0) {
-    res = res.concat([
-      // Edward Stanley Pembroke
-      [firstName, ...middleNames, lastName].join(" "),
-      // Edward Stanley P
-      [firstName, ...middleNames, lastName[0]].join(" "),
-      // Edward S Pembroke
-      [firstName, middleNames[0][0], lastName].join(" "),
-      // Edward S P
-      [firstName, middleNames[0][0], lastName].join(" "),
-      // Pembroke Edward Stanley
-      [lastName, firstName, ...middleNames].join(" "),
-      // Pembroke Edward S
-      [lastName, firstName, middleNames[0][0]].join(" "),
-    ]);
+    res = res.concat(
+      firstNames.flatMap((firstName) => [
+        // Edward Stanley Pembroke
+        [firstName, ...middleNames, lastName].join(" "),
+        // Edward Stanley P
+        [firstName, ...middleNames, lastName[0]].join(" "),
+        // Edward S Pembroke
+        [firstName, middleNames[0][0], lastName].join(" "),
+        // Edward S P
+        [firstName, middleNames[0][0], lastName].join(" "),
+        // Pembroke Edward Stanley
+        [lastName, firstName, ...middleNames].join(" "),
+        // Pembroke Edward S
+        [lastName, firstName, middleNames[0][0]].join(" "),
+      ])
+    );
   }
   return res;
 }
@@ -76,6 +79,14 @@ launcher.onclick = function (element) {
         'var stringSimilarity = document.createElement("script");' +
         `stringSimilarity.setAttribute("src","${stringSimilarityUrl}");` +
         "document.head.appendChild(stringSimilarity);",
+    });
+
+    var nicknamesUrl = chrome.runtime.getURL("nicknames.js");
+    chrome.tabs.executeScript(tabs[0].id, {
+      code:
+        'var nicknames = document.createElement("script");' +
+        `nicknames.setAttribute("src","${nicknamesUrl}");` +
+        "document.head.appendChild(nicknames);",
     });
 
     // this is incredibly sketchy:

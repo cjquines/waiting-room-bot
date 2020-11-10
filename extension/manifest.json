@@ -13,6 +13,7 @@
   "web_accessible_resources": [
     "string-similarity.min.js",
     "rxjs.umd.js",
+    "nicknames.js",
     "waitingroombot.js"
   ],
   "icons": {},
