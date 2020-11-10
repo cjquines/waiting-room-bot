@@ -22,6 +22,8 @@ if it worked, you should see "Waiting Room Bot for Zoom Meetings" be installed a
 1	Edward Stanley Pembroke	12	School, MA
 2	Carl Joshua Quines	11	School, MA
 ```
+    * day-of, you'll be getting the names from [the class roster link](https://esp.mit.edu/teach/Splash/2020/section_students/20225). just select the entire table, from before the "1" on the first row to the last row.
+
 4. click "attach and launch"
 
 if it worked, it should send an "active!" message to the chat. do not close the chat window. do not join audio. use another zoom client to actually participate in the meeting.
