@@ -54,7 +54,10 @@ namelist.oninput = function (e) {
 };
 
 testinput.oninput = function (e) {
-  var input = testinput.value.toLowerCase();
+  var input = testinput.value
+    .toLowerCase()
+    .replace(/\(\w+\)/g, "")
+    .trim();
   testpreview.innerText = `${JSON.stringify(
     stringSimilarity.findBestMatch(input, names).bestMatch
   )}

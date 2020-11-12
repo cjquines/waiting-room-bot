@@ -99,7 +99,10 @@ function parseNameList(nameList) {
 }
 
 function inNameList(displayName) {
-  const display = displayName.toLowerCase();
+  const display = displayName
+    .toLowerCase()
+    .replace(/\(\w+\)/g, "")
+    .trim();
   const res = stringSimilarity.findBestMatch(display, names);
   const jiggledRes = stringSimilarity.findBestMatch(display, jiggledNames);
   // change this threshold?
