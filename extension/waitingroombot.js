@@ -99,6 +99,7 @@ function parseNameList(nameList) {
 }
 
 function inNameList(displayName) {
+  if (!names?.length) return false;
   const display = displayName
     .toLowerCase()
     .replace(/\(\w+\)/g, "")
@@ -155,8 +156,10 @@ var admitTimeSliceQueue$ = rxjs
 var admitSubscription = admitTimeSliceQueue$.subscribe((userId) => {
   try {
     admit(userId);
-    chatboxSend(`admitted ${userId}`);
-  } catch {}
+    // chatboxSend(`Admitted ${userId}`);
+  } catch {
+    console.log(`Failed to process ${userId}`);
+  }
 });
 
 // init
@@ -170,5 +173,5 @@ if (chatPaneButton) {
 
 setTimeout(() => {
   parseNameList(nameList);
-  chatboxSend("active!");
+  chatboxSend("Active!");
 }, 100);
