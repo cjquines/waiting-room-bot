@@ -66,6 +66,11 @@ testinput.oninput = function (e) {
   )}`;
 };
 
+// disable launcher if url is bad
+if (!document.URL.includes("/wc/")) {
+  launcher.disabled = true;
+}
+
 launcher.onclick = function (element) {
   chrome.tabs.query({ active: true, currentWindow: true }, function (tabs) {
     var rxjsUrl = chrome.runtime.getURL("rxjs.umd.js");
